@@ -1,4 +1,4 @@
-# Task Clipboard
+# ClipNest
 
 Windows向けの Electron + Vue アプリです。  
 複数画像の一時クリップボード機能と、シンプルなタスク管理機能を1つにまとめています。

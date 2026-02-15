@@ -1,5 +1,5 @@
 {
-  "name": "task-clipboard",
+  "name": "clipnest",
   "version": "0.1.0",
   "description": "Temporary image clipboard and simple task manager for Windows.",
   "main": "dist-electron/main.js",
@@ -30,8 +30,8 @@
     "wait-on": "^9.0.4"
   },
   "build": {
-    "appId": "com.yamag.taskclipboard",
-    "productName": "Task Clipboard",
+    "appId": "com.yamag.clipnest",
+    "productName": "ClipNest",
     "files": [
       "dist/**/*",
       "dist-electron/**/*",
