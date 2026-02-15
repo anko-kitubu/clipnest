@@ -9,11 +9,13 @@
     "dev": "concurrently -k \"npm:dev:renderer\" \"npm:dev:electron\"",
     "dev:renderer": "vite",
     "dev:electron": "wait-on tcp:5173 && npm run build:electron && cross-env NODE_ENV=development VITE_DEV_SERVER_URL=http://127.0.0.1:5173 electron .",
+    "clean": "node -e \"const fs=require('node:fs');for (const d of ['dist-renderer','dist-electron','release']) { try { fs.rmSync(d,{recursive:true,force:true,maxRetries:5,retryDelay:100}); } catch {} }\"",
+    "prune:update-metadata": "node -e \"const fs=require('node:fs');for (const p of ['release/latest.yml','release/win-unpacked/resources/app-update.yml']) { try { fs.rmSync(p,{force:true}); } catch {} }\"",
     "build": "npm run build:renderer && npm run build:electron",
     "build:renderer": "vite build",
     "build:electron": "tsc -p electron/tsconfig.json",
     "typecheck:electron": "tsc -p electron/tsconfig.json --noEmit",
-    "dist:win": "npm run build && electron-builder --win nsis"
+    "dist:win": "npm run clean && npm run build && electron-builder --win nsis --publish never && npm run prune:update-metadata"
   },
   "dependencies": {
     "vue": "^3.5.28"
@@ -32,20 +34,28 @@
   "build": {
     "appId": "com.yamag.clipnest",
     "productName": "ClipNest",
+    "directories": {
+      "output": "release"
+    },
     "files": [
-      "dist/**/*",
+      "dist-renderer/**/*",
       "dist-electron/**/*",
       "package.json"
     ],
+    "electronLanguages": [
+      "ja",
+      "en-US"
+    ],
     "win": {
-      "publisherName": "yamag",
+      "signAndEditExecutable": false,
       "target": [
         "nsis"
       ]
     },
     "nsis": {
       "oneClick": false,
-      "allowToChangeInstallationDirectory": true
+      "allowToChangeInstallationDirectory": true,
+      "differentialPackage": false
     }
   }
 }

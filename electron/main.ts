@@ -71,7 +71,7 @@ const createMainWindow = (): BrowserWindow => {
   if (isDevelopment && devServerUrl) {
     void window.loadURL(devServerUrl);
   } else {
-    void window.loadFile(path.join(__dirname, "..", "dist", "index.html"));
+    void window.loadFile(path.join(__dirname, "..", "dist-renderer", "index.html"));
   }
 
   return window;
