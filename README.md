@@ -1,43 +1,46 @@
 ﻿# ClipNest
 
-ClipNest is a Windows desktop app built with Electron + Vue.
-It combines an image clipboard canvas and a simple task manager in one app.
+## インストーラー
+- リリースページ: https://github.com/anko-kitubu/clipnest/releases/tag/0.1.0
 
-## Features
-- `Clipboard` tab
-- Add image from OS clipboard with `Ctrl+V`
-- Add image files by drag and drop
-- Move and resize images on a white canvas
-- Copy selected image back to OS clipboard
-- Undo operations on the canvas
-- Keep up to 50 images in memory (oldest removed first)
-- Canvas state is kept while switching tabs (same app session)
+## 概要
+ClipNest は、画像を一時的に整理できるクリップボードキャンバスと、シンプルなタスク管理を1つにまとめた Windows 向けデスクトップアプリです。
 
-- `Tasks` tab
-- Add tasks
-- Remove task immediately by checking it
-- Tasks are persisted in localStorage
+## 主要機能
+- `クリップボード` タブ: `Ctrl+V` でクリップボード画像を追加
+- `クリップボード` タブ: 画像ファイルのドラッグ&ドロップ追加
+- `クリップボード` タブ: 画像の移動・拡縮・削除
+- `クリップボード` タブ: 選択画像のコピー（`Ctrl+C` / ボタン操作）
+- `クリップボード` タブ: 元に戻す（Undo、最大50履歴）
+- `クリップボード` タブ: 画像は最大50枚まで保持
+- `タスク` タブ: タスク追加、チェックで完了（削除）
+- 最前面表示トグル（状態保持）
 
-- `Always on top`
-- Toggle from header switch
-- State is persisted and restored on next launch
+## 使い方（最短手順）
+1. 上記インストーラー（v0.1.0）をダウンロードしてインストールします。
+2. アプリ起動後、`クリップボード` タブで `Ctrl+V` またはドラッグ&ドロップで画像を追加します。
+3. 画像をドラッグして配置し、必要に応じてリサイズハンドルで拡縮します。
+4. タスク管理が必要な場合は `タスク` タブで追加・完了チェックを行います。
 
-## Development
-```bash
-npm install
-npm run dev
-```
+## 動作環境
+- OS: Windows（正式配布対象）
+- アプリ形式: Electron デスクトップアプリ
 
-## Build
-```bash
-npm run build
-```
+## 技術スタック
+- Electron
+- Vue 3
+- TypeScript
+- Vite
+- electron-builder（NSIS）
 
-## Windows Installer
-```bash
-npm run dist:win
-```
+## 注意点
+- 署名なしインストーラーのため、実行時に Windows の警告画面が表示される場合があります。
+- 画像コピーは「画像貼り付け対応アプリ」向けです。フォルダへのファイル貼り付けとは動作が異なります。
+- 画像保持数は最大50枚です。超過時は古い画像から削除されます。
+- タスクは `localStorage` に保存されるため、端末やユーザープロファイルが変わると引き継がれません。
 
-Generated artifacts:
-- `release/ClipNest Setup <version>.exe`
-- `release/win-unpacked/ClipNest.exe`
+## ライセンス
+MIT License
+
+## 作者
+- GitHub: `anko-kitubu`
